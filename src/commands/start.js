@@ -1,7 +1,20 @@
+const errorFunction = require("../error/error");
+
 module.exports = async (bot, chatId, userName) => {
-  bot.sendMessage(chatId, `Добро пожаловать в тестового бота ${userName}!`);
-  bot.sendSticker(
-    chatId,
-    "https://cdn.tlgrm.app/stickers/4dd/300/4dd300fd-0a89-3f3d-ac53-8ec93976495e/192/4.webp"
-  );
+  try {
+    await bot.sendMessage(
+      chatId,
+      `${userName}, welcome t' bot-translator t' Pirate language!`
+    );
+    await bot.sendSticker(
+      chatId,
+      "https://cdn.tlgrm.app/stickers/1ec/cce/1eccce8d-99fb-3461-8de3-53338d4b39aa/192/2.webp"
+    );
+    await bot.sendMessage(
+      chatId,
+      "Type yer sentence and I will translate it t' ye!"
+    );
+  } catch (error) {
+    errorFunction(bot, chatId, error);
+  }
 };
